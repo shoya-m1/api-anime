@@ -82,7 +82,8 @@ export interface BatchLinkCard {
 }
 
 export interface EpisodeLinkCard {
-  title: number | null;
+  title: string | null;
+  time: string | null;
   episodeId: string;
   href?: string;
   otakudesuUrl?: string;

@@ -319,6 +319,7 @@ export default class OtakudesuParser extends OtakudesuParserExtra {
 
           listElements.forEach((listElement) => {
             const title = $(listElement).find("a").text();
+            const time = $(listElement).find(".zeebr").text();
             const oriUrl = $(listElement).find("a").attr("href");
             const otakudesuUrl = this.generateSourceUrl(oriUrl);
             const slug = this.generateSlug(oriUrl);
@@ -334,17 +335,8 @@ export default class OtakudesuParser extends OtakudesuParserExtra {
                 };
               } else {
                 data.episodeList.push({
-                  title: this.num(
-                    title
-                      .toLowerCase()
-                      .split("episode")[1]
-                      .trim()
-                      .split(" ")
-                      .filter((str, index) => {
-                        if (!isNaN(Number(str)) && index === 0) return str;
-                      })
-                      .join("")
-                  ),
+                  title: title,
+                  time: time,
                   episodeId: slug,
                   href: this.generateHref("episode", slug),
                   otakudesuUrl,
@@ -518,9 +510,7 @@ export default class OtakudesuParser extends OtakudesuParserExtra {
         const episodeElements = $(".keyingpost li").toArray();
 
         episodeElements.forEach((episodeElement) => {
-          const title = this.num(
-            $(episodeElement).find("a").text().trim().replace("Episode", "").trim()
-          );
+          const title = $(episodeElement).find("a").text().trim().replace("Episode", "").trim();
           const oriUrl = $(episodeElement).find("a").attr("href");
           const otakudesuUrl = this.generateSourceUrl(oriUrl);
           const episodeId = this.generateSlug(oriUrl);
@@ -528,6 +518,7 @@ export default class OtakudesuParser extends OtakudesuParserExtra {
 
           data.info.episodeList.push({
             title,
+            time: null,
             episodeId,
             href,
             otakudesuUrl,
@@ -566,7 +557,7 @@ export default class OtakudesuParser extends OtakudesuParserExtra {
           id: serverIdArr[0],
           i: serverIdArr[1],
           q: serverIdArr[2],
-          action: this.derawr("7f8A5AhE8g558Ai8k9AAikD7gkECBgD9"),
+          action: this.derawr("2a3505c93b0035d3f455df82bf976b84"),
           nonce: nonce,
         }),
       });
@@ -591,7 +582,7 @@ export default class OtakudesuParser extends OtakudesuParserExtra {
           method: "POST",
           responseType: "json",
           data: new URLSearchParams({
-            action: this.derawr("ff675Di7Ck7Ehf895hE7hBBi6E7Bk68k"),
+            action: this.derawr("aa1208d27f29ca340c92c66d1926f13f"),
           }),
         });
 
