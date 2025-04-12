@@ -83,7 +83,8 @@ export interface AnimeLinkCard {
 }
 
 export interface EpisodeLinkCard {
-  title: number | null;
+  title: string | null;
+  releaseDate: string | null;
   episodeId: string;
   href?: string;
   samehadakuUrl?: string;

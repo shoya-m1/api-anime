@@ -365,13 +365,14 @@ export default class SamehadakuParser extends SamehadakuParserExtra {
           });
         });
 
-        const episodeElements = $(".lstepsiode ul li .eps a").toArray();
+        const episodeElements = $(".lstepsiode ul li .epsleft").toArray();
 
         episodeElements.forEach((episodeElement) => {
-          const card = this.parseLinkCard($(episodeElement), "episode");
+          const card = this.parseLinkCard($(episodeElement).find("a"), "episode");
 
           data.episodeList.push({
-            title: this.num(card.title.split(" ")[0]),
+            title: $(episodeElement).find("a").text().trim(),
+            releaseDate: $(episodeElement).find(".date").text().trim(),
             episodeId: card.slug,
             href: card.href,
             samehadakuUrl: card.samehadakuUrl,
