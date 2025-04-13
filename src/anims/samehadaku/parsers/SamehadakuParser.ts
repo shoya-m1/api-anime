@@ -43,6 +43,12 @@ export default class SamehadakuParser extends SamehadakuParserExtra {
 
             (index === 0 ? data.recent.animeList : data.batch.batchList).push(card);
           });
+
+          animeElements.forEach((animeEl) => {
+            const card = this.parseAnimeCard1($(animeEl), index === 1 ? "anime" : "batch");
+
+            (index === 1 ? data.recent.animeList : data.batch.batchList).push(card);
+          });
         });
 
         const animeMovieElements = $(".widgetseries ul li").toArray();
